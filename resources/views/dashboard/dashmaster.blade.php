@@ -116,12 +116,12 @@
     <!-- /.box-body -->
     <div class="box-footer no-padding">
         <ul class="nav nav-pills nav-stacked">
-        <li><a href="#">United States of America
-            <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-        <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-        </li>
-        <li><a href="#">China
-            <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+            <li><a href="#">United States of America
+                <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
+            <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+            </li>
+            <li><a href="#">China
+                <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
         </ul>
     </div>
     <!-- /.footer -->
@@ -131,39 +131,36 @@
 
 @section('js')
 <script>
-		var doughnutData = [
-				{
-					value: 56,
-					color:"blue",
-					highlight: "aqua",
-					label: "PMC"
-				},
-				{
-					value: 230,
-					color: 'orange',
-					highlight: "orange",
-					label: "Educação"
-				},
-				{
-					value: 238,
-					color: "green",
-					highlight: "green",
-					label: "Saúde"
-				},
-				{
-					value: 16,
-					color: "red",
-					highlight: "red",
-					label: "Ass.Social"
-				},
-			];
+var doughnutData = [
+        {
+            value: 56,
+            color:"blue",
+            highlight: "aqua",
+            label: "PMC"
+        },
+        {
+            value: 230,
+            color: 'orange',
+            highlight: "orange",
+            label: "Educação"
+        },
+        {
+            value: 238,
+            color: "green",
+            highlight: "green",
+            label: "Saúde"
+        },
+        {
+            value: 16,
+            color: "red",
+            highlight: "red",
+            label: "Ass.Social"
+        },
+    ];
 
-			window.onload = function(){
-				var ctx = document.getElementById("chart-area").getContext("2d");
-				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
-			};
-
-
-
-	</script>
+    window.onload = function(){
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+    };
+</script>
 @stop
