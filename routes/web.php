@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 // Fundos
-Route::get('/fundos', 'FundosController@index')->name('fundos');
-Route::get('/dashboard/master', 'Painel\DashboardsController@master')->name('dashmaster');
+Route::get('/fundos', 'Painel\FundosController@index')->name('fundos')->middleware('auth');
+Route::get('/dashboard/master', 'Painel\DashboardsController@master')->name('dashmaster')->middleware('auth');
+
+Route::resource('fundo'             , 'Painel\FundosController')->middleware('auth');

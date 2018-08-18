@@ -15,8 +15,9 @@ class FundosController extends Controller
      */
     public function index()
     {
-        $fundosAtivos = Fundos::where('ativo','1')->get();
-        return view('painel.fundos.index', compact('fundosAtivos', 'title'));
+        $title = 'Fundos - Cadastrados';
+        $Fundos = Fundos::where('ativo','1')->get();
+        return view('painel.fundos.index', compact('Fundos', 'title'));
     }
 
     /**
