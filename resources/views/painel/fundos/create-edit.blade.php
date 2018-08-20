@@ -3,18 +3,8 @@
 
 @section('content_header')
 <h1>
-	Fundos
-	<small>Cadastro</small>
+	Fundo
 </h1>
-<ol class="breadcrumb">
-	<li>
-		<a href="#">
-			<i class="fa fa-dashboard"></i>Fundos</a>
-	</li>
-	<li>
-		<a href="#">Cadastro</a>
-	</li>
-</ol>
 @stop 
 
 @section('content') 
@@ -38,11 +28,11 @@
 @endif
 
 <input type="hidden" name="ativo" value="0">
-<input type="hidden" name="filial_cd" value="0">
+<input type="hidden" name="tipo" value="M">
 	
 	<div class="box box-primary">
 		<div class="box-header with-border">
-			<h3 class="box-title">Cadastro</h3>
+			<h3 class="box-title">Novo</h3>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
@@ -50,67 +40,58 @@
 				 text input -->
 			<div class="col-md-12">
 				<div class="form-group col-md-2">
-					<label>Código Interno</label>
-					{!! Form::text('codigo',null,['class' => 'form-control', 'maxlength' => '3', 'id'=>"codigo",'onkeyup'=>'javascript:this.value=this.value.toUpperCase();']) !!}
+					<label>CNPJ</label>
+					{!! Form::text('cnpj',null,['class' => 'form-control', 'maxlength' => '18', 'id'=>"cnpj"]) !!}
 				</div>
 				<div class="form-group col-md-3">
 					<label>Fantasia</label>
-					{!! Form::text('fantasia',null,['class' => 'form-control', 'maxlength' => '30']) !!}
+					{!! Form::text('fantasia',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>"fantasia"]) !!}
 				</div>
 				<div class="form-group col-md-7">
 					<label>Razão Social</label>
-					{!! Form::text('razao_social',null,['class' => 'form-control', 'maxlength' => '60']) !!}
+					{!! Form::text('razao_social',null,['class' => 'form-control', 'maxlength' => '60', 'id'=>"nome"]) !!}
+				</div>
+				<div class="form-group col-md-8">
+					<label>Natureza Jurídica</label>
+					{!! Form::text('natureza',null,['class' => 'form-control', 'maxlength' => '60', 'id'=>"natureza"]) !!}
+					<input type="radio" name="tipo" value="M" id="matriz">
+					<label for="matriz">Matriz</label>
+					<input type="radio" name="tipo" value="F" id="filial">
+					<label for="filial">Filial</label>
 				</div>
 				<div class="form-group col-md-2">
 					<label>C.E.P.</label>
-					<!--input type="text" class="form-control" id = "cep" maxlength="9" data-inputmask="mask": "99999-999" data-mask="">-->
-					{!! Form::number('cep',null,['class' => 'form-control', 'max' => '99999999', 'id'=>"cep"]) !!}
+					{!! Form::text('cep',null,['class' => 'form-control', 'maxlength' => '10', 'id'=>"cep"]) !!}
 				</div>
 				<div class="form-group col-md-8">
 					<label>Logradouro</label>
-					{!! Form::text('logradouro',null,['class' => 'form-control', 'maxlength' => '40', 'id'=>'logr']) !!}
+					{!! Form::text('logradouro',null,['class' => 'form-control', 'maxlength' => '40', 'id'=>'logradouro']) !!}
 				</div>
 				<div class="form-group col-md-2">
 					<label>Número</label>
-					{!! Form::number('numero',null,['class' => 'form-control', 'maxlength' => '6', 'id'=>"num_logr"]) !!}
+					{!! Form::number('numero',null,['class' => 'form-control', 'maxlength' => '6', 'id'=>"numero"]) !!}
 				</div>
 				<div class="form-group col-md-2">
 					<label>Complemento</label>
-					{!! Form::text('compl',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'comp_logr']) !!}
+					{!! Form::text('compl',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'complemento']) !!}
 				</div>
 				<div class="form-group col-md-4">
 					<label>Bairro</label>
-					{!! Form::text('bairro',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'bairro_logr']) !!}
+					{!! Form::text('bairro',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'bairro']) !!}
 				</div>
 				<div class="form-group col-md-4">
 					<label>Cidade</label>
-					{!! Form::text('cidade',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'cidade_logr']) !!}
+					{!! Form::text('cidade',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'cidade']) !!}
 				</div>
 				<div class="form-group col-md-2">
 					<label>Estado</label>
-					{!! Form::text('estado',null,['class' => 'form-control', 'maxlength' => '2', 'id'=>'estado_logr']) !!}
+					{!! Form::text('estado',null,['class' => 'form-control', 'maxlength' => '2', 'id'=>'uf']) !!}
 				</div>
 				<div class="form-group col-md-2">
 					<label>IBGE</label>
 					{!! Form::number('ibge',null,['class' => 'form-control', 'maxlength' => '7', 'id'=>"ibge"]) !!}
 					<label>Ativo?</label>
-					{!! Form::checkbox('ativo') !!}
-				</div>
-				<div class="form-group col-md-4">
-					<label>C.N.P.J.</label>
-					<!--<input type="text" class="form-control" id = "cnpj" maxlength="18" data-inputmask="mask": "99.999.999/9999-99" data-mask="">-->
-					{!! Form::number('cnpj',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"cnpj"]) !!}
-					<!--<input type="text" name="cnpj" id="cnpj" onkeyup="FormataCnpj(this,event)" onblur="if(!validarCNPJ(this.value)){alert('CNPJ Informado é inválido'); this.value='';}" maxlength="18"  class="form-control input-md" ng-model="cadastro.cnpj" required>-->
-					<label>Centro de Distribuição?</label>
-					{!! Form::checkbox('filial_cd') !!}
-				</div>
-				<div class="form-group col-md-3">
-					<label>Inscrição Estadual</label>
-					{!! Form::number('ie',null,['class' => 'form-control', 'maxlength' => '9', 'id'=>"ie"]) !!}
-				</div>
-				<div class="form-group col-md-3">
-					<label>Inscrição Municipal</label>
-					{!! Form::number('im',null,['class' => 'form-control', 'maxlength' => '15', 'id'=>"im"]) !!}
+					<input type="checkbox" id="ativo">
 				</div>
 			</div>
 		</div>
@@ -128,76 +109,56 @@
 		//$("#cnpj").inputmask("99.999.999/9999-99");
 		//});
 		function alteraMaiusculo(){
-			var valor = document.getElementById("codigo").texto;
+			var valor = document.getElementById("fantasia").texto;
 			var novoTexto = valor.value.toUpperCase();
 			valor.value = novoTexto;
 		}});
 	</script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-
-			function limpa_formulário_cep() {
-				// Limpa valores do formulário de cep.
-				$("#logr").val("");
-				$("#bairro_logr").val("");
-				$("#cidade_logr").val("");
-				$("#estado_logr").val("");
-				$("#ibge").val("");
-				
-			}
-			
-			//Quando o campo cep perde o foco.
-			$("#cep").blur(function() {
-
-				//Nova variável "cep" somente com dígitos.
-				var cep = $(this).val().replace(/\D/g, '');
-
-				//Verifica se campo cep possui valor informado.
-				if (cep != "") {
-
-					//Expressão regular para validar o CEP.
-					var validacep = /^[0-9]{8}$/;
-
-					//Valida o formato do CEP.
-					if(validacep.test(cep)) {
-
-						//Preenche os campos com "..." enquanto consulta webservice.
-						$("#logr").val("...");
-						$("#bairro_logr").val("...");
-						$("#cidade_logr").val("...");
-						$("#estado_logr").val("...");
-						$("#ibge").val("...");
-						
-
-						//Consulta o webservice viacep.com.br/
-						$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
-							if (!("erro" in dados)) {
-								//Atualiza os campos com os valores da consulta.
-								$("#logr").val(dados.logradouro);
-								$("#bairro_logr").val(dados.bairro);
-								$("#cidade_logr").val(dados.localidade);
-								$("#estado_logr").val(dados.uf);
-								$("#ibge").val(dados.ibge);
-								
-							} //end if.
-							else {
-								//CEP pesquisado não foi encontrado.
-								limpa_formulário_cep();
-								alert("CEP não encontrado.");
-							}
-						});
-					} //end if.
-					else {
-						//cep é inválido.
-						limpa_formulário_cep();
-						alert("Formato de CEP inválido.");
+		$("#cnpj").focusout(function(){
+			$.ajax({
+				type:"GET",
+				data: {'cnpj': $("#cnpj").val()},
+				url: "{{route ('fundos.cnpj') }}",
+				dataType: 'json',
+				success: function(resposta){
+					console.log(resposta);
+					if(resposta.status == "ERROR"){
+						alert(resposta.message + "\nPor favor, digite os dados manualmente.");
+						$("#post #nome").focus().select();
+						return false;
 					}
-				} //end if.
-				else {
-					//cep sem valor, limpa formulário.
-					limpa_formulário_cep();
-				}
+					$("#nome").val(resposta.nome);
+					$("#cnpj").val(resposta.cnpj);
+					$("#fantasia").val(resposta.fantasia);
+					$("#natureza").val(resposta.natJuridica);
+					if(resposta.tipo == "MATRIZ"){
+						document.getElementById("matriz").checked = true;
+						document.getElementById("filial").checked = false;
+						$("#tipo").val('M');
+					} else {
+						document.getElementById("matriz").checked = false;
+						document.getElementById("filial").checked = true;
+						$("#tipo").val('F');
+					}
+					$("#cep").val(resposta.cep);
+					$("#logradouro").val(resposta.logradouro);
+					$("#numero").val(resposta.numero);
+					$("#complemento").val(resposta.complemento);
+					$("#bairro").val(resposta.bairro);
+					$("#cidade").val(resposta.municipio);
+					$("#uf").val(resposta.uf);
+					if(resposta.situacao == "ATIVA"){
+						document.getElementById("ativo").checked = true;
+						$("#ativo").val('1');
+					} else {
+						document.getElementById("ativo").checked = false;
+						$("#ativo").val('0');
+					}
+					//$("#atividade").val(resposta.atividade_principal[0].text + " (" + resposta.atividade_principal[0].code + ")");
+					$("#telefone").val(resposta.telefone);
+					$("#email").val(resposta.email);
+				}	
 			});
 		});
 	</script>

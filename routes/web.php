@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 // Fundos
 Route::get('/fundos', 'Painel\FundosController@index')->name('fundos')->middleware('auth');
+Route::get('/fundos/cnpj/', 'Painel\FundosController@cnpj')->name('fundos.cnpj')->middleware('auth');
 Route::get('/dashboard/master', 'Painel\DashboardsController@master')->name('dashmaster')->middleware('auth');
 
-Route::resource('fundo'             , 'Painel\FundosController')->middleware('auth');
+Route::resource('fundo', 'Painel\FundosController')->middleware('auth');

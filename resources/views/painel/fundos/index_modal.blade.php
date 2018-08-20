@@ -8,15 +8,6 @@
 	Fundos
 	<small>Lista</small>
 </h1>
-<ol class="breadcrumb">
-	<li>
-		<a href="#">
-			<i class="fa fa-dashboard"></i> Fundos</a>
-	</li>
-	<li>
-		<a href="#">Lista</a>
-	</li>
-</ol>
 @stop 
 
 @section('content')
@@ -40,8 +31,8 @@
 	<!-- /.box-header -->
 	<div class="box-body">
 		<!-- /.box-header -->
-		<a href="{{route('fundo.create')}}" class="btn btn-primary btn-lg active btn-add">
-			<span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+		<a data-toggle="modal" data-target="b6" id="btnModal6" class="btn btn-primary btn-lg active btn-add">
+			<span class="glyphicon glyphicon-plus"></span>Cadastrar</a>
 			<p></p>
 
 			<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">

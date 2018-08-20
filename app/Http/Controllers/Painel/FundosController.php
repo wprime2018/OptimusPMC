@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Fundos;
+use Ixudra\Curl\Facades\Curl;
+use App\Http\Requests\Painel\FundosFormRequest;
 
 class FundosController extends Controller
 {
@@ -27,7 +29,8 @@ class FundosController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Fundo Novo';
+        return view ('painel.fundos.create-edit');
     }
 
     /**
@@ -36,9 +39,9 @@ class FundosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FundosFormRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -84,5 +87,36 @@ class FundosController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cnpj(Request $request) 
+    {
+        $response = Curl::to("https://www.receitaws.com.br/v1/cnpj/".$request->cnpj)
+                        ->withContentType('text/plain')                
+                        ->asJson()
+                        ->get();
+        if ($response->status == 'OK'){
+            $dadosCnpj = array();
+            $dadosCnpj['cnpj'] = $response->cnpj;
+            $dadosCnpj['status'] = $response->status;
+            $dadosCnpj['tipo'] = $response->tipo;
+            $dadosCnpj['nome'] = $response->nome;
+            $dadosCnpj['fantasia'] = $response->fantasia;
+            //$dadosCnpj['ativPrincipal'] = $response->atividade_principal->code.' - '.$response->atividade_principal->text;
+            $dadosCnpj['situacao'] = $response->situacao;
+            $dadosCnpj['logradouro'] = $response->logradouro;
+            $dadosCnpj['numero'] = $response->numero;
+            $dadosCnpj['bairro'] = $response->bairro;
+            $dadosCnpj['cep'] = $response->cep;
+            $dadosCnpj['municipio'] = $response->municipio;
+            $dadosCnpj['uf'] = $response->uf;
+            $dadosCnpj['natJuridica'] = $response->natureza_juridica;
+            $dadosCnpj['telefone'] = $response->telefone;
+            $dadosCnpj['email'] = $response->email;
+        } else {
+
+            $dadosCnpj = "CNPJ Inválido";
+            $dadosCnpj = "ERROR";
+        }
+        return $dadosCnpj;
     }
 }
