@@ -19,7 +19,7 @@
 @if( isset($Fundos) ) 
 	{!! Form::model($Fundos, ['route' => ['fundo.update', $Fundos->id], 'class' => 'form', 'method' => 'put']) !!} 
 @else 
-	{!! Form::open(['route' => 'fundo.store', 'class' => 'form'])!!} 
+	{!! Form::open(['route' => 'fundo.store', 'class' => 'form'])!!}
 @endif
 
 <input type="hidden" name="ativo" value="0">
@@ -28,7 +28,7 @@
 	
 	<div class="box box-primary">
 		<div class="box-header with-border">
-			<h3 class="box-title">Fundo</h3> <small>Novo</small>
+			<h3 class="box-title">Fundo</h3> <small>{{$tipoTela}}</small>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
@@ -135,6 +135,17 @@
 	<!-- Finalizando o body do formulário -->
 @section ('js')
 	<script type="text/javascript">
+		$(document).ready(function(){
+			if({{$Fundos->ativo}} == '1'){ document.getElementById("ativo").checked = true;}
+			if($("#tipo").val('M')){ 
+				document.getElementById("matriz").checked = true;
+				document.getElementById("filial").checked = false;
+			} else {
+				document.getElementById("filial").checked = true;
+				document.getElementById("matriz").checked = false;
+			}
+			$( "#uf" ).val("{{$Fundos->estado}}");
+		});
 		$("#cnpj").focusout(function(){
 			$.ajax({
 				type:"GET",

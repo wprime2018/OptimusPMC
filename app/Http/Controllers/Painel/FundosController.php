@@ -19,8 +19,9 @@ class FundosController extends Controller
 
     public function create()
     {
-        $title = 'Fundo Novo';
-        return view ('painel.fundos.create-edit');
+        $title = 'Fundo';
+        $tipoTela = 'Cadastrando';
+        return view ('painel.fundos.create-edit', 'tipoTela');
     }
 
     public function store(FundosFormRequest $request)
@@ -49,7 +50,11 @@ class FundosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Fundos = Fundos::find($id);
+        $tipoTela = 'Editando';
+        $title = "Editar Fundo: {{$Fundos->codigo}}";
+
+        return view('painel.fundos.create-edit', compact('title', 'Fundos', 'tipoTela'));
     }
 
     /**
