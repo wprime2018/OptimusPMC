@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
+        geekcom\ValidatorDocs\ValidatorProvider::class,
         /*
          * Package Service Providers...
          */

@@ -1,11 +1,6 @@
 @extends('adminlte::page') 
-@section('title', 'Fundos') 
 
-@section('content_header')
-<h1>
-	Fundo
-</h1>
-@stop 
+@section('title', 'Fundos') 
 
 @section('content') 
 
@@ -29,10 +24,11 @@
 
 <input type="hidden" name="ativo" value="0">
 <input type="hidden" name="tipo" value="M">
+<input type="hidden" name="user_cad" value="{{Auth::user()->name}}">
 	
 	<div class="box box-primary">
 		<div class="box-header with-border">
-			<h3 class="box-title">Novo</h3>
+			<h3 class="box-title">Fundo</h3> <small>Novo</small>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body">
@@ -43,15 +39,20 @@
 					<label>CNPJ</label>
 					{!! Form::text('cnpj',null,['class' => 'form-control', 'maxlength' => '18', 'id'=>"cnpj"]) !!}
 				</div>
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-2">
+					<label>Código/Apelido</label>
+					{!! Form::text('codigo',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>"codigo",'onkeyup'=>'javascript:this.value=this.value.toUpperCase();']) !!}
+				</div>
+	
+				<div class="form-group col-md-8">
 					<label>Fantasia</label>
 					{!! Form::text('fantasia',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>"fantasia"]) !!}
 				</div>
-				<div class="form-group col-md-7">
+				<div class="form-group col-md-6">
 					<label>Razão Social</label>
 					{!! Form::text('razao_social',null,['class' => 'form-control', 'maxlength' => '60', 'id'=>"nome"]) !!}
 				</div>
-				<div class="form-group col-md-8">
+				<div class="form-group col-md-6">
 					<label>Natureza Jurídica</label>
 					{!! Form::text('natureza',null,['class' => 'form-control', 'maxlength' => '60', 'id'=>"natureza"]) !!}
 					<input type="radio" name="tipo" value="M" id="matriz">
@@ -69,7 +70,7 @@
 				</div>
 				<div class="form-group col-md-2">
 					<label>Número</label>
-					{!! Form::number('numero',null,['class' => 'form-control', 'maxlength' => '6', 'id'=>"numero"]) !!}
+					{!! Form::text('numero',null,['class' => 'form-control', 'maxlength' => '10', 'id'=>"numero"]) !!}
 				</div>
 				<div class="form-group col-md-2">
 					<label>Complemento</label>
@@ -84,8 +85,36 @@
 					{!! Form::text('cidade',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'cidade']) !!}
 				</div>
 				<div class="form-group col-md-2">
-					<label>Estado</label>
-					{!! Form::text('estado',null,['class' => 'form-control', 'maxlength' => '2', 'id'=>'uf']) !!}
+			<label for="uf">Estado</label>
+			<select name="estado" id="uf" class="form-control">
+				<option value="AC">Acre</option>
+				<option value="AL">Alagoas</option>
+				<option value="AP">Amapá</option>
+				<option value="AM">Amazonas</option>
+				<option value="BA">Bahia</option>
+				<option value="CE">Ceará</option>
+				<option value="DF">Distrito Federal</option>
+				<option value="ES">Espírito Santo</option>
+				<option value="GO">Goiás</option>
+				<option value="MA">Maranhão</option>
+				<option value="MT">Mato Grosso</option>
+				<option value="MS">Mato Grosso do Sul</option>
+				<option value="MG">Minas Gerais</option>
+				<option value="PA">Pará</option>
+				<option value="PB">Paraíba</option>
+				<option value="PR">Paraná</option>
+				<option value="PE">Pernambuco</option>
+				<option value="PI">Piauí</option>
+				<option value="RJ">Rio de Janeiro</option>
+				<option value="RN">Rio Grande do Norte</option>
+				<option value="RS">Rio Grande do Sul</option>
+				<option value="RO">Rondônia</option>
+				<option value="RR">Roraima</option>
+				<option value="SC">Santa Catarina</option>
+				<option value="SP">São Paulo</option>
+				<option value="SE">Sergipe</option>
+				<option value="TO">Tocantins</option>
+			</select>		
 				</div>
 				<div class="form-group col-md-2">
 					<label>IBGE</label>
@@ -101,19 +130,10 @@
 		<button type="reset" class="btn btn-warning" accesskey="R">Redefinir</button>
 	</div>
 </form>
-@stop 
+
+@stop    
+	<!-- Finalizando o body do formulário -->
 @section ('js')
-	<script type="text/javascript">
-		$(document).ready(function(){
-		//$("#cep").inputmask("99999-999");
-		//$("#cnpj").inputmask("99.999.999/9999-99");
-		//});
-		function alteraMaiusculo(){
-			var valor = document.getElementById("fantasia").texto;
-			var novoTexto = valor.value.toUpperCase();
-			valor.value = novoTexto;
-		}});
-	</script>
 	<script type="text/javascript">
 		$("#cnpj").focusout(function(){
 			$.ajax({

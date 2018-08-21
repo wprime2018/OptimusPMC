@@ -2,23 +2,6 @@
 
 @section('title', 'Fundos') 
 
-@section('content_header')
-
-<h1>
-	Fundos
-	<small>Lista</small>
-</h1>
-<ol class="breadcrumb">
-	<li>
-		<a href="#">
-			<i class="fa fa-dashboard"></i> Fundos</a>
-	</li>
-	<li>
-		<a href="#">Lista</a>
-	</li>
-</ol>
-@stop 
-
 @section('content')
 
 @if( isset($errors) && count($errors) > 0 )
@@ -35,7 +18,7 @@
 
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">Fundos Cadastrados</h3>
+		<h1 class="box-title">Fundos</h1> <small>Cadastrados</small>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -44,25 +27,25 @@
 			<span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 			<p></p>
 
-			<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+			<table id="crud" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
 			<thead>
 				<tr role="row">
-					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-						style="width: 150.2px;">Fantasia</th>
-					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-						style="width: 350.8px;">Razão Social</th>
 					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
-						style="width: 187.4px;">C.N.P.J.</th>
+						style="width: 50.4px;">C.N.P.J.</th>
+					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
+						style="width: 30.2px;">Cód/Apelido</th>
+					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
+						style="width: 350.8px;">Fantasia</th>
 					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-						style="width: 135.6px;">Ações</th>
+						style="width: 15.6px;">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($Fundos as $fundo)
 				<tr role="row" class="odd" id="{{$fundo->id}}">
-					<td>{{$fundo->fantasia}}</td>
-					<td>{{$fundo->razao_social}}</td>
 					<td>{{$fundo->cnpj}}</td>
+					<td>{{$fundo->codigo}}</td>
+					<td>{{$fundo->fantasia}}</td>
 					<td>
 						<a href="{{ route ( 'fundo.edit', $fundo->id ) }}" class="actions edit">
 							<span class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></span>
@@ -78,14 +61,6 @@
 				</tr>
 				@endforeach
 			</tbody>
-			<tfoot>
-				<tr>
-					<th rowspan="1" colspan="1">Fantasia</th>
-					<th rowspan="1" colspan="1">Razão Social</th>
-					<th rowspan="1" colspan="1">C.N.P.J.</th>
-					<th rowspan="1" colspan="1">Ações</th>
-				</tr>
-			</tfoot>
 		</table>
 	</div>
 </div>
@@ -123,101 +98,53 @@
 	@endcomponent
 @endif 
 
-	@component('modals.modal_primary')
-		@slot('icoBtnModal')
-			glyphicon glyphicon-plus
-		@endslot
-		@slot('txtBtnModal')
-			Importar do SIC
-		@endslot
-		@slot('triggerModal')
-			b6
-		@endslot
-		@slot('tituloModal')
-			Novo Fundo
-		@endslot
-		@slot('actionModal')
-			Painel\FundosController@cnpj
-		@endslot
-		@slot('routeModal')
-				fundo.store
-		@endslot 
-		@slot('methodModal')
-			post
-		@endslot
-
-		@slot('bodyModal')
-
-		<input type="hidden" name="ativo" value="0">
-		<input type="hidden" name="fundo_cd" value="0">
-		
-		<div class="modal-body">
-				<div class="row">
-					<div class = "form-group col-md-5">
-						<label for="cnpj">CNPJ</label>
-						{!! Form::text('cnpj',null,['class' => 'form-control', 'maxlength' => '18', 'id'=>"cnpj"]) !!}
-					</div>
-					<div class = "form-group col-md-7">
-						<label for="nome">Raz.Social</label>
-						<input id="nome" type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row">
-					<div class = "form-group col-xs-6">
-						<label for="fantasia">Fantasia</label>
-						<input id="fantasia" required type="text" class="form-control">
-					</div>
-					<div class = "form-group col-xs-6">
-						<label for="email">E-Mail</label>
-						<input id="email" type="text" class="form-control">
-					</div>
-				</div>
-			<label for="uf">Estado</label>
-			<select id="uf" class="form-control">
-				<option value="AC">Acre</option>
-				<option value="AL">Alagoas</option>
-				<option value="AP">Amapá</option>
-				<option value="AM">Amazonas</option>
-				<option value="BA">Bahia</option>
-				<option value="CE">Ceará</option>
-				<option value="DF">Distrito Federal</option>
-				<option value="ES">Espírito Santo</option>
-				<option value="GO">Goiás</option>
-				<option value="MA">Maranhão</option>
-				<option value="MT">Mato Grosso</option>
-				<option value="MS">Mato Grosso do Sul</option>
-				<option value="MG">Minas Gerais</option>
-				<option value="PA">Pará</option>
-				<option value="PB">Paraíba</option>
-				<option value="PR">Paraná</option>
-				<option value="PE">Pernambuco</option>
-				<option value="PI">Piauí</option>
-				<option value="RJ">Rio de Janeiro</option>
-				<option value="RN">Rio Grande do Norte</option>
-				<option value="RS">Rio Grande do Sul</option>
-				<option value="RO">Rondônia</option>
-				<option value="RR">Roraima</option>
-				<option value="SC">Santa Catarina</option>
-				<option value="SP">São Paulo</option>
-				<option value="SE">Sergipe</option>
-				<option value="TO">Tocantins</option>
-			</select>		
-		</div>
-		@endslot
-		@slot('btnConfirmar')
-			Gravar
-		@endslot
-	@endcomponent
 @stop
 
 @section ('js')
 	
+<script type="text/javascript">
+	$(function () {
+		$('#crud').DataTable({
+			'paging'      : true,
+			'fixedHeader' : true,
+			'lengthChange': true,
+			'searching'   : true,
+			'ordering'    : true,
+			'info'        : true,
+			'autoWidth'   : true,
+			'responsive'  : true,
+			'dom': '<l<B>f<t>ip>',
+			'buttons': [
+				{
+					extend: 'excelHtml5',
+					customize: function( xlsx ) {
+						var sheet = xlsx.xl.worksheets['sheet1.xml'];
+						$('row c[r^="G"], row c[r^="H"]', sheet).attr( 's', 57);
+					},
+					footer: true,
+					titleAttr: 'Exporta a EXCEL',
+					text: '<i class="fa fa-file-excel-o"></i>',
+				},
+				'csvHtml5',
+				{
+					extend: 'pdfHtml5',
+					orientation: 'landscape',
+					pageSize: 'A4',
+					title: 'Produtos - OptimusH'
+				}
+	
+			]
+		});
+	});
+	
+</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#btnModal6").click(function(){
 				$("#b6").modal('show');
 			});
 		});
+		
 	</script>
 
 	<script type="text/javascript">

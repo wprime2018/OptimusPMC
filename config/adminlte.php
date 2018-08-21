@@ -15,7 +15,7 @@ return [
 
     'title' => 'Optimus RH',
 
-    'title_prefix' => '',
+    'title_prefix' => 'Optimus RH -',
 
     'title_postfix' => '',
 

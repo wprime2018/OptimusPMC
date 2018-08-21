@@ -28,7 +28,7 @@
 
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables with bootstrap 3 style -->
-        <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/DataTables/datatables.min.css') }}"/>
     @endif
 
     @yield('adminlte_css')
@@ -56,8 +56,14 @@
 
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables with bootstrap 3 renderer -->
-    <script src="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js"></script>
-@endif
+    <script type="text/javascript" src="{{ asset('plugins/DataTables/pdfmake-0.1.32/pdfmake.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/DataTables/pdfmake-0.1.32/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('plugins/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/DataTables/DataTables-1.10.16/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/DataTables/Buttons-1.5.1/js/dataTables.buttons.min.js')}}"></script>
+	<script src="{{ asset('plugins/DataTables/JSZip-2.5.0/jszip.min.js')}}"></script>
+    <script src="{{ asset('plugins/DataTables/Buttons-1.5.1/js/buttons.html5.min.js')}}"></script>@endif
 
 @if(config('adminlte.plugins.chartjs'))
     <!-- ChartJS -->

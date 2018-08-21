@@ -1,7 +1,3 @@
-@section('css')
-    .modal .modal-dialog { width: 60%; } 
-@stop
-
     <div class="modal fade" id="{{$triggerModal}}" style="display: none;" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -22,7 +22,8 @@ class Fundos extends Model
         'ibge',
         'tipo',
         'ie', 
+        'user_cad',
         'im', 
-        'ativo',
+        'ativo'
     ];
 }

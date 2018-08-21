@@ -30,7 +30,7 @@ class FundosFormRequest extends FormRequest
             'razao_social'  => 'required|min:2|max:60',
             'cep'           => 'required',
             'logradouro'    => 'required|min:2|max:40',
-            'numero'        => 'required|numeric',
+            'numero'        => 'required',
             'bairro'        => 'required|min:2|max:30',
             'cidade'        => 'required|min:2|max:30',
             'estado'        => 'required|min:2|max:30',

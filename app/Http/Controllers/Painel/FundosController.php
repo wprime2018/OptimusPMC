@@ -7,14 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Fundos;
 use Ixudra\Curl\Facades\Curl;
 use App\Http\Requests\Painel\FundosFormRequest;
-
+use Illuminate\Support\Facades\Auth;
 class FundosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = 'Fundos - Cadastrados';
@@ -22,34 +17,25 @@ class FundosController extends Controller
         return view('painel.fundos.index', compact('Fundos', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title = 'Fundo Novo';
         return view ('painel.fundos.create-edit');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(FundosFormRequest $request)
     {
-        dd($request);
+        $dataForm = $request->except('_token');
+        $dataForm['ativo'] = ($dataForm['ativo'] == '') ? 0 : 1;
+        $insert = Fundos::create($dataForm);
+        if ($insert) {
+            return redirect()->route('fundo.index');
+        } else {
+            return redirect()->route('fundo.create');
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
