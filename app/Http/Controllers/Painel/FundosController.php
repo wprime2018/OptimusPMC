@@ -8,6 +8,7 @@ use App\Models\Fundos;
 use Ixudra\Curl\Facades\Curl;
 use App\Http\Requests\Painel\FundosFormRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Painel\FunctionsController;
 class FundosController extends Controller
 {
     public function index()
@@ -21,7 +22,7 @@ class FundosController extends Controller
     {
         $title = 'Fundo';
         $tipoTela = 'Cadastrando';
-        return view ('painel.fundos.create-edit', 'tipoTela');
+        return view ('painel.fundos.create-edit', compact('title', 'tipoTela'));
     }
 
     public function store(FundosFormRequest $request)
@@ -105,8 +106,8 @@ class FundosController extends Controller
             $dadosCnpj['email'] = $response->email;
         } else {
 
-            $dadosCnpj = "CNPJ Inválido";
-            $dadosCnpj = "ERROR";
+            $dadosCnpj['message'] = "CNPJ Inválido";
+            $dadosCnpj['status'] = "ERROR";
         }
         return $dadosCnpj;
     }

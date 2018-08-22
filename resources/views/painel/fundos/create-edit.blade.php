@@ -26,14 +26,14 @@
 <input type="hidden" name="tipo" value="M">
 <input type="hidden" name="user_cad" value="{{Auth::user()->name}}">
 	
-	<div class="box box-primary">
-		<div class="box-header with-border">
-			<h3 class="box-title">Fundo</h3> <small>{{$tipoTela}}</small>
-		</div>
-		<!-- /.box-header -->
-		<div class="box-body">
-			<!--<form role="form">
-				 text input -->
+	<div class="nav-tabs-custom">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#fundo" data-toggle="tab" aria-expanded="true">Fundo <small>{{$tipoTela}}</small></a></li>
+			<li class=""><a href="#responsavel" data-toggle="tab" aria-expanded="false">Responsável <small>{{$tipoTela}}</small></a></li>
+		{{--<li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>--}}
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane" id="fundo">
 			<div class="col-md-12">
 				<div class="form-group col-md-2">
 					<label>CNPJ</label>
@@ -85,36 +85,36 @@
 					{!! Form::text('cidade',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'cidade']) !!}
 				</div>
 				<div class="form-group col-md-2">
-			<label for="uf">Estado</label>
-			<select name="estado" id="uf" class="form-control">
-				<option value="AC">Acre</option>
-				<option value="AL">Alagoas</option>
-				<option value="AP">Amapá</option>
-				<option value="AM">Amazonas</option>
-				<option value="BA">Bahia</option>
-				<option value="CE">Ceará</option>
-				<option value="DF">Distrito Federal</option>
-				<option value="ES">Espírito Santo</option>
-				<option value="GO">Goiás</option>
-				<option value="MA">Maranhão</option>
-				<option value="MT">Mato Grosso</option>
-				<option value="MS">Mato Grosso do Sul</option>
-				<option value="MG">Minas Gerais</option>
-				<option value="PA">Pará</option>
-				<option value="PB">Paraíba</option>
-				<option value="PR">Paraná</option>
-				<option value="PE">Pernambuco</option>
-				<option value="PI">Piauí</option>
-				<option value="RJ">Rio de Janeiro</option>
-				<option value="RN">Rio Grande do Norte</option>
-				<option value="RS">Rio Grande do Sul</option>
-				<option value="RO">Rondônia</option>
-				<option value="RR">Roraima</option>
-				<option value="SC">Santa Catarina</option>
-				<option value="SP">São Paulo</option>
-				<option value="SE">Sergipe</option>
-				<option value="TO">Tocantins</option>
-			</select>		
+					<label for="uf">Estado</label>
+					<select name="estado" id="uf" class="form-control">
+						<option value="AC">Acre</option>
+						<option value="AL">Alagoas</option>
+						<option value="AP">Amapá</option>
+						<option value="AM">Amazonas</option>
+						<option value="BA">Bahia</option>
+						<option value="CE">Ceará</option>
+						<option value="DF">Distrito Federal</option>
+						<option value="ES">Espírito Santo</option>
+						<option value="GO">Goiás</option>
+						<option value="MA">Maranhão</option>
+						<option value="MT">Mato Grosso</option>
+						<option value="MS">Mato Grosso do Sul</option>
+						<option value="MG">Minas Gerais</option>
+						<option value="PA">Pará</option>
+						<option value="PB">Paraíba</option>
+						<option value="PR">Paraná</option>
+						<option value="PE">Pernambuco</option>
+						<option value="PI">Piauí</option>
+						<option value="RJ">Rio de Janeiro</option>
+						<option value="RN">Rio Grande do Norte</option>
+						<option value="RS">Rio Grande do Sul</option>
+						<option value="RO">Rondônia</option>
+						<option value="RR">Roraima</option>
+						<option value="SC">Santa Catarina</option>
+						<option value="SP">São Paulo</option>
+						<option value="SE">Sergipe</option>
+						<option value="TO">Tocantins</option>
+					</select>		
 				</div>
 				<div class="form-group col-md-2">
 					<label>IBGE</label>
@@ -124,11 +124,41 @@
 				</div>
 			</div>
 		</div>
+		<div class="tab-pane" id="responsavel">
+			<div class="col-md-12">
+				<div class="form-group col-md-3">
+					<label>CPF</label>
+					{!! Form::text('cpf',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"cpf", 'placeholder' => 'Somente Números']) !!}
+				</div>
+				<div class="form-group col-md-3">
+					<label>PIS/PASEP</label>
+					{!! Form::text('pis',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"pis"]) !!}
+				</div>
+				<div class="form-group col-md-3">
+					<label>RG</label>
+					{!! Form::text('rg',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"rg"]) !!}
+				</div>
+				<div class="form-group col-md-3">
+					<label>Titulo Eleitor</label>
+					{!! Form::text('titulo',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"titulo"]) !!}
+				</div>
+				<div class="form-group col-md-8">
+					<label>Nome Completo</label>
+					{!! Form::text('nomeResp',null,['class' => 'form-control', 'maxlength' => '50', 'id'=>"nomeResp",'onkeyup'=>'javascript:this.value=this.value.toUpperCase();']) !!}
+				</div>
+				<div class="form-group col-md-4">
+					<label>CNH</label>
+					{!! Form::text('cnh',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"titulo"]) !!}
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="box-footer">
-		<button type="submit" class="btn btn-primary" accesskey="G">Gravar</button>
-		<button type="reset" class="btn btn-warning" accesskey="R">Redefinir</button>
-	</div>
+</div>
+<div class="box-footer">
+	<button type="submit" class="btn btn-primary" accesskey="G">Gravar</button>
+	<button type="reset" class="btn btn-warning" accesskey="R">Redefinir</button>
+</div>
+	
 </form>
 
 @stop    
@@ -136,15 +166,21 @@
 @section ('js')
 	<script type="text/javascript">
 		$(document).ready(function(){
-			if({{$Fundos->ativo}} == '1'){ document.getElementById("ativo").checked = true;}
-			if($("#tipo").val('M')){ 
-				document.getElementById("matriz").checked = true;
-				document.getElementById("filial").checked = false;
-			} else {
-				document.getElementById("filial").checked = true;
-				document.getElementById("matriz").checked = false;
+			function empty(str){
+				return !str || !/[^\s]+/.test(str);
+			};
+	
+			if({{$tipoTela}} = "Editando") {
+				if({{$Fundos->ativo}} == '1'){ document.getElementById("ativo").checked = true;}
+				if($("#tipo").val('M')){ 
+					document.getElementById("matriz").checked = true;
+					document.getElementById("filial").checked = false;
+				} else {
+					document.getElementById("filial").checked = true;
+					document.getElementById("matriz").checked = false;
+				}
+				$( "#uf" ).val("{{$Fundos->estado}}");
 			}
-			$( "#uf" ).val("{{$Fundos->estado}}");
 		});
 		$("#cnpj").focusout(function(){
 			$.ajax({
@@ -154,7 +190,7 @@
 				dataType: 'json',
 				success: function(resposta){
 					console.log(resposta);
-					if(resposta.status == "ERROR"){
+					if(resposta.status = "ERROR"){
 						alert(resposta.message + "\nPor favor, digite os dados manualmente.");
 						$("#post #nome").focus().select();
 						return false;
@@ -189,6 +225,23 @@
 					//$("#atividade").val(resposta.atividade_principal[0].text + " (" + resposta.atividade_principal[0].code + ")");
 					$("#telefone").val(resposta.telefone);
 					$("#email").val(resposta.email);
+				}	
+			});
+		});
+		$("#pis").focusout(function(){
+			$.ajax({
+				type:"GET",
+				data: {'pis': $("#pis").val()},
+				url: "{{route ('validatePis') }}",
+				dataType: 'json',
+				success: function(resposta){
+					//console.log(resposta);
+					if(resposta = 'false'){
+						alert("Número do PIS inválido!");
+						$("#pis").val('');
+						$("#pis").focus().select();
+						return false;
+					}
 				}	
 			});
 		});
