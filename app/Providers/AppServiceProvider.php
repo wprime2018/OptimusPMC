@@ -30,10 +30,10 @@ class AppServiceProvider extends ServiceProvider
                 'submenu' => [
                     [
                         'text'        => 'Cadastro',
-                        'url'         => 'fundos/',
+                        'route'       => 'fundo.index',
                         'label'       => Fundos::count(),
                         'label_color' => 'success',
-                        'icon_color' => 'aqua',
+                        'icon_color'  => 'aqua',
                     ],
                     [
                         'text'        => 'Responsável',

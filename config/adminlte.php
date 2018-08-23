@@ -108,13 +108,13 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'CADASTROS',
         [
             'text' => 'Painel',
-            'url'  => 'dashboard/master',
+            'route'  => 'dashmaster'
             //'can'  => 'master',
         ],
-        [
+        /*[
             'text'        => 'Pages',
             'url'         => 'admin/pages',
             'icon'        => 'file',
@@ -183,7 +183,7 @@ return [
             'text'       => 'Information',
             'icon_color' => 'aqua',
         ],
-    ],
+    */],
 
     /*
     |--------------------------------------------------------------------------

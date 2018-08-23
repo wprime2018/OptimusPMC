@@ -161,7 +161,7 @@
 			$.ajax({
 				type:"GET",
 				data: {'cnpj': $("#cnpj").val()},
-				url: "{{route ('fundos.cnpj') }}",
+				url: "{{route ('fundo.cnpj') }}",
 				dataType: 'json',
 				success: function(resposta){
 					console.log(resposta);

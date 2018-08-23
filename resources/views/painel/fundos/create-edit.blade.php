@@ -126,29 +126,85 @@
 		</div>
 		<div class="tab-pane" id="responsavel">
 			<div class="col-md-12">
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-2">
 					<label>CPF</label>
 					{!! Form::text('cpf',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"cpf", 'placeholder' => 'Somente Números']) !!}
 				</div>
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-2">
 					<label>PIS/PASEP</label>
-					{!! Form::text('pis',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"pis"]) !!}
+					{!! Form::text('pis',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"pis", 'placeholder' => 'Somente Números']) !!}
 				</div>
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-2">
 					<label>RG</label>
-					{!! Form::text('rg',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"rg"]) !!}
+					{!! Form::text('rg',null,['class' => 'form-control', 'maxlength' => '14', 'id'=>"rg", 'placeholder' => 'Somente Números']) !!}
 				</div>
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-2">
 					<label>Titulo Eleitor</label>
-					{!! Form::text('titulo',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"titulo"]) !!}
+					{!! Form::text('titulo',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"titulo", 'placeholder' => 'Somente Números']) !!}
 				</div>
-				<div class="form-group col-md-8">
+				<div class="form-group col-md-2">
+					<label>CNH</label>
+					{!! Form::text('cnh',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"cnh", 'placeholder' => 'Somente Números']) !!}
+				</div>
+				<div class="form-group col-md-2">
+					<label>CEP</label>
+					{!! Form::text('cepResp',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"cepResp", 'placeholder' => 'Somente Números']) !!}
+				</div>
+				<div class="form-group col-md-12">
 					<label>Nome Completo</label>
 					{!! Form::text('nomeResp',null,['class' => 'form-control', 'maxlength' => '50', 'id'=>"nomeResp",'onkeyup'=>'javascript:this.value=this.value.toUpperCase();']) !!}
 				</div>
+				<div class="form-group col-md-10">
+					<label>Logradouro</label>
+					{!! Form::text('logradouroResp',null,['class' => 'form-control', 'maxlength' => '40', 'id'=>'logradouroResp']) !!}
+				</div>
+				<div class="form-group col-md-2">
+					<label>Número</label>
+					{!! Form::text('numeroResp',null,['class' => 'form-control', 'maxlength' => '10', 'id'=>"numeroResp"]) !!}
+				</div>
 				<div class="form-group col-md-4">
-					<label>CNH</label>
-					{!! Form::text('cnh',null,['class' => 'form-control', 'maxlength' => '12', 'id'=>"titulo"]) !!}
+					<label>Complemento</label>
+					{!! Form::text('complResp',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'complResp']) !!}
+				</div>
+				<div class="form-group col-md-4">
+					<label>Bairro</label>
+					{!! Form::text('bairroResp',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'bairroResp']) !!}
+				</div>
+				<div class="form-group col-md-4">
+					<label>Cidade</label>
+					{!! Form::text('cidadeResp',null,['class' => 'form-control', 'maxlength' => '30', 'id'=>'cidadeResp']) !!}
+				</div>
+				<div class="form-group col-md-2">
+					<label for="ufResp">Estado</label>
+					<select name="estadoResp" id="ufResp" class="form-control">
+						<option value="AC">Acre</option>
+						<option value="AL">Alagoas</option>
+						<option value="AP">Amapá</option>
+						<option value="AM">Amazonas</option>
+						<option value="BA">Bahia</option>
+						<option value="CE">Ceará</option>
+						<option value="DF">Distrito Federal</option>
+						<option value="ES">Espírito Santo</option>
+						<option value="GO">Goiás</option>
+						<option value="MA">Maranhão</option>
+						<option value="MT">Mato Grosso</option>
+						<option value="MS">Mato Grosso do Sul</option>
+						<option value="MG">Minas Gerais</option>
+						<option value="PA">Pará</option>
+						<option value="PB">Paraíba</option>
+						<option value="PR">Paraná</option>
+						<option value="PE">Pernambuco</option>
+						<option value="PI">Piauí</option>
+						<option value="RJ">Rio de Janeiro</option>
+						<option value="RN">Rio Grande do Norte</option>
+						<option value="RS">Rio Grande do Sul</option>
+						<option value="RO">Rondônia</option>
+						<option value="RR">Roraima</option>
+						<option value="SC">Santa Catarina</option>
+						<option value="SP">São Paulo</option>
+						<option value="SE">Sergipe</option>
+						<option value="TO">Tocantins</option>
+					</select>		
 				</div>
 			</div>
 		</div>
@@ -186,7 +242,7 @@
 			$.ajax({
 				type:"GET",
 				data: {'cnpj': $("#cnpj").val()},
-				url: "{{route ('fundos.cnpj') }}",
+				url: "{{route ('fundo.cnpj') }}",
 				dataType: 'json',
 				success: function(resposta){
 					console.log(resposta);
@@ -241,7 +297,17 @@
 						$("#pis").val('');
 						$("#pis").focus().select();
 						return false;
+					} else {
+						$.ajax({
+							type:"GET",
+							data: {'valor': $("#pis").val(), 'mask':'###.#####.##-#'},
+							url: "{{route ('validatePis') }}",
+							dataType: 'json',
+							success: function(resposta){
+								//console.log(resposta);
+			
 					}
+
 				}	
 			});
 		});

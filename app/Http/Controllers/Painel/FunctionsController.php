@@ -31,6 +31,22 @@ class FunctionsController extends Controller
             $resto=11-$resto;
         
         return ($resto!=$digito) ? 'false' : 'true';
-        
+    }
+
+    public function mask($val, $mask) ## Para usar a máscara ($cnpj,'##.###.###/####-##')
+    {
+        $maskared = '';
+        $k = 0;
+        for($i = 0; $i<=strlen($mask)-1; $i++)
+        {
+            if($mask[$i] == '#') {
+                if(isset($val[$k]))
+                $maskared .= $val[$k++];
+            } else {
+                if(isset($mask[$i]))
+                $maskared .= $mask[$i];
+            }
         }
+        return $maskared;
+    }
 }
